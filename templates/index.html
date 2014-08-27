@@ -17,9 +17,58 @@
     {% exit 403 %}
 {% endif %}
 
+{% block sidebar %}
+<nav>
+	<ul>
+		<li class="heading"><span>{{ "Location"|t }}</span></li>
+		<li><a data-key="plugins">{{ "Plugins"|t }}</a>
+		    <div class="toggle"></div>
+		    <ul>
+		    {% for plugin in craft.plugins.getPlugins(false) %}
+		        <li><a data-key="{{ plugin.getClassHandle() }}">{{ plugin.getName() }}</a></li>
+            {% endfor %}
+		    </ul>
+		</li>
+		<li><a data-key="templates">{{ "Templates"|t }}</a>
+		    <div class="toggle"></div>
+		    <ul>
+		        <li><a data-key="key1">label2</a></li>
+		        <li><a data-key="key2">label2</a></li>
+		    </ul>
+		</li>
+	</ul>
+</nav>
+{% endblock %}
+
 {% set content %}
 <div class="elementindex">
 	<div class="main">
+		<div class="toolbar">
+			<table class="inputs fullwidth">
+				<tr>
+					<td class="thin">
+						<div class="btn menubtn localemenubtn">{{ initialLocale ? initialLocale.getName() }}</div>
+						<div class="menu">
+							<ul class="padded">
+							{% for locale in craft.i18n.getEditableLocales() %}
+								<li><a{% if initialLocale and locale.getId() == initialLocale.getId() %} class="sel"{% endif %} data-locale="{{ locale.getId() }}">{{ locale.getName() }}</a></li>
+							{% endfor %}
+							</ul>
+						</div>
+					</td>
+					<td>
+						<div class="texticon search icon">
+							{{ text({
+								placeholder: "Search"|t
+							}) }}
+							<div class="clear hidden" title="{{ 'Clear'|t }}"></div>
+						</div>
+					</td>
+					<td class="thin viewbtns hidden"></td>
+				</tr>
+			</table>
+			<div class="spinner hidden"></div>
+		</div>
 		<form method="post" accept-charset="utf-8">
 		    <input type="hidden" name="action" value="translate/save">
 		    <input type="hidden" name="locale" value="{{ initialLocale }}">
