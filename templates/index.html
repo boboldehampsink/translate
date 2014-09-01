@@ -18,6 +18,9 @@
 {% endif %}
 
 {% block sidebar %}
+<div class="buttons">
+	<a class="btn submit" data-icon="refresh" href="{{ actionUrl('translate/refresh') }}">{{ "Refresh"|t }}</a>
+</div>
 <nav>
     <ul>
         <li class="heading"><span>{{ "Location"|t }}</span></li>

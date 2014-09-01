@@ -4,6 +4,20 @@ namespace Craft;
 class TranslateController extends BaseController
 {
 
+    public function actionRefresh()
+    {
+    
+        // Clear the cache
+        craft()->cache->delete('translations');
+        
+        // Set a flash message
+        craft()->userSession->setNotice(Craft::t('The translation sources have been refreshed.'));
+    
+        // Redirect back to page
+        $this->redirect('translate');    
+    
+    }
+
     public function actionSave() 
     {
         
@@ -14,8 +28,11 @@ class TranslateController extends BaseController
         // Save to translation file
         craft()->translate->set($locale, $translations);
         
+        // Set a flash message
+        craft()->userSession->setNotice(Craft::t('The translations have been updated.'));
+        
         // Redirect back to page
-        $this->redirectToPostedUrl();
+        $this->redirect('translate');
         
     }
     
