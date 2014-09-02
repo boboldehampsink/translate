@@ -124,7 +124,7 @@ class TranslateService extends BaseApplicationComponent
 	                        ));
 	                        
 	                        // If searching, only return matches
-	                    	if($criteria->search && !in_array($criteria->search, $element->getAttributes())) {
+	                    	if($criteria->search && !stristr($element->original, $criteria->search) && !stristr($element->translation, $criteria->search)) {
 	                    		continue;
 	                    	}
 	                    		                        
