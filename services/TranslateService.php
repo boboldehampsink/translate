@@ -30,32 +30,7 @@ class TranslateService extends BaseApplicationComponent
             '/Craft\.(t|translate)\(.*?"(.*?)".*?\)/'
         )
         
-    ); 
-    
-    public function get() 
-    {
-    
-        // Check if we have 'em cached
-        if(!($files = craft()->cache->get('translations'))) {
-    
-            // Get all plugin occurences
-            $plugins = $this->_occurences(craft()->path->getPluginsPath(), '^((?!vendor).)*(\.(\.php|\.html|\.js)?)$');
-            
-            // Get all template occurences
-            $templates = $this->_occurences(craft()->path->getSiteTemplatesPath(), '.html');
-                    
-            // Merge all files
-            $files = array_merge($plugins, $templates);
-            
-            // Save cache
-            craft()->cache->set('translations', $files);
-            
-        }
-        
-        // Return all
-        return $files;
-    
-    }
+    );
     
     public function set($locale, $translations)
     {
@@ -88,39 +63,87 @@ class TranslateService extends BaseApplicationComponent
     
     }
     
-    protected function _occurences($path, $filter)
+    public function get($criteria)
     {
+        
+    	// Ensure source is an array	
+    	if(!is_array($criteria->source)) {
+    		$criteria->source = array($criteria->source);
+    	}
+    	
+    	// Gather all translatable strings
+	    $occurences = array();
+	        	
+    	// Loop through paths
+    	foreach($criteria->source as $path) {
+    	
+    		// Set filter - no vendor folders, only php, html or js
+    		$filter = '^((?!vendor).)*(\.(php|html|js)?)$';
     
-        // Get files
-        $files = IOHelper::getFolderContents($path, true, $filter);
-                
-        // Gather all translatable strings
-        $occurences = array();
+	        // Get files
+	        $files = IOHelper::getFolderContents($path, true, $filter);
+	        	        
+	        // Loop through files and find translate occurences
+	        foreach($files as $file) {
+	        
+	            // Get file contents
+	            $contents = IOHelper::getFileContents($file);
+	            
+	            // Get extension
+	            $extension = IOHelper::getExtension($file);
+	        
+	            // Get matches per extension
+	            foreach($this->_expressions[$extension] as $regex) {
+	            
+	                // Match translation functions
+	                if(preg_match_all($regex, $contents, $matches)) {
+	                    
+	                    // Collect
+	                    foreach($matches[2] as $original) {
+	                    
+	                    	// Translate
+	                    	$translation = Craft::t($original, array(), null, $criteria->locale);
+	                    	
+	                    	// Show translation in textfield
+	                    	$field = craft()->templates->render('_includes/forms/text', array(
+	                    		'id' => ElementHelper::createSlug($original),
+	                    		'name' => 'translation[' . $original . ']', 
+	                    		'value' => $translation,
+	                    		'placeholder' => $translation
+	                    	));
+	                    		                    
+	                    	// Fill element with translation data
+	                    	$element = TranslateModel::populateModel(array(
+	                        	'id'		  => ElementHelper::createSlug($original),
+	                        	'original'	  => $original,
+	                        	'translation' => $translation,
+	                        	'source'	  => $path,
+	                        	'file'		  => $file,
+	                        	'locale'	  => $criteria->locale,
+	                        	'field'		  => $field
+	                        ));
+	                        
+	                        // If searching, only return matches
+	                    	if($criteria->search && !stristr($element->original, $criteria->search) && !stristr($element->translation, $criteria->search)) {
+	                    		continue;
+	                    	}
+	                    		                        
+	                        // If wanting one status, ditch the rest
+	                        if($criteria->status && $criteria->status != $element->getStatus()) {
+	                        	continue;
+	                     	}
+	                        	                    
+	                    	// Collect in array
+	                        $occurences[$original] = $element;
+	                        
+	                    }
+	                                
+	                }
+	            
+	            }
+	                    
+	        }
         
-        // Loop through files and find translate occurences
-        foreach($files as $file) {
-        
-            // Get file contents
-            $contents = IOHelper::getFileContents($file);
-            
-            // Get extension
-            $extension = IOHelper::getExtension($file);
-        
-            // Get matches per extension
-            foreach($this->_expressions[$extension] as $regex) {
-            
-                // Match translation functions
-                if(preg_match_all($regex, $contents, $matches)) {
-                    
-                    // Collect
-                    foreach($matches[2] as $match) {
-                        $occurences[$match] = Craft::t($match);
-                    }
-                                
-                }
-            
-            }
-                    
         }
         
         return $occurences;
