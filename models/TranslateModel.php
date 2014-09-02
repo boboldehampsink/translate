@@ -17,24 +17,24 @@ class TranslateModel extends BaseElementModel
     protected function defineAttributes()
     {
         return array_merge(parent::defineAttributes(), array(
-            'id'              => AttributeType::String,
-            'original'        => AttributeType::String,
-            'translation'     => AttributeType::String,
-            'source'          => AttributeType::Mixed,
-            'file'            => AttributeType::String,
-            'locale'          => array(AttributeType::String, 'default' => 'en_us'),
-            'field'			  => AttributeType::Mixed
+            'id'          => AttributeType::String,
+            'original'    => AttributeType::String,
+            'translation' => AttributeType::String,
+            'source'      => AttributeType::Mixed,
+            'file'        => AttributeType::String,
+            'locale'      => array(AttributeType::String, 'default' => 'en_us'),
+            'field'       => AttributeType::Mixed
         ));
     }
     
     public function getStatus()
     {
-        if ($this->original != $this->translation)
-        {
+        if ($this->original != $this->translation) {
+        
             return static::DONE;
-        }
-        else
-        {
+            
+        } else {
+        
             return static::PENDING;
         }
     }

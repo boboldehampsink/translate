@@ -2,46 +2,30 @@
 {% set title = "Translate"|t %}
 {% set elementType = 'Translate' %}
 
-{% includeCssResource "css/assets.css" %}
-{% includeJsResource "lib/fileupload/jquery.ui.widget.js" %}
-{% includeJsResource "lib/fileupload/jquery.fileupload.js" %}
+{% includeJsResource "translate/translate.js" %}
 
 {% block sidebar %}
     <div class="buttons">
-        <input type="file" multiple="multiple" name="assets-upload" style="display: none" />
-        <div class="btn submit assets-upload-button" data-icon="upload" style="position: relative; overflow: hidden;" role="button">{{ "Upload file"|t }}</div>
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="translate/upload">
+            <input type="file" name="translations-upload" style="display: none" />
+        </form>
+        <div class="btn submit translations-upload-button" data-icon="upload" style="position: relative; overflow: hidden;" role="button">{{ "Upload file"|t }}</div>
     </div>
 
-	{{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
 {% block content %}
-	<form method="post" accept-charset="utf-8">
-    	<input type="hidden" name="action" value="translate/save">
+    <form method="post" accept-charset="utf-8">
+        <input type="hidden" name="action" value="translate/save">
         <input type="hidden" name="locale" value="{{ craft.locale }}">
         
-		{{ parent() }}
-		
-		<div class="buttons hidden">
-		    <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
-		</div>
-	</form>
-{% endblock %}
-
-{% block initJs %}
-    {{ parent() }}
-    
-    // Get locale menu btn
-    var $localeMenuBtn = $('.localemenubtn:first').menubtn().data('menubtn').menu;
-    
-    // Get locale form element
-    var $localeFormElm = $('input[name="locale"]');
-    
-    // Init form with selected locale
-    $localeFormElm.val(Craft.getLocalStorage('BaseElementIndex.locale'));
-    
-    // Change locale on select
-    $localeMenuBtn.on('optionselect', function(ev) {
-        $localeFormElm.val($(ev.selectedOption).data('locale'));
-    });    
+        {{ parent() }}
+        
+        <div class="buttons hidden">
+            <input type="submit" class="btn submit" value="{{ "Save"|t }}"> 
+            <a class="btn submit" href="{{ actionUrl('translate/download') }}">{{ "Download"|t }}</a>
+        </div>
+    </form>
 {% endblock %}

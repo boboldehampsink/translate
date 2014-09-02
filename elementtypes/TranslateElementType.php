@@ -11,21 +11,21 @@ class TranslateElementType extends BaseElementType
     
     public function isLocalized()
     {
-    	return true;
+        return true;
     }
     
     public function hasStatuses()
-	{
-		return true;
-	}
+    {
+        return true;
+    }
 
-	public function getStatuses()
-	{
-		return array(
-			TranslateModel::DONE => Craft::t('Done'),
-			TranslateModel::PENDING => Craft::t('Pending')
-		);
-	}
+    public function getStatuses()
+    {
+        return array(
+            TranslateModel::DONE    => Craft::t('Done'),
+            TranslateModel::PENDING => Craft::t('Pending')
+        );
+    }
 
     public function defineTableAttributes($source = null)
     {
@@ -38,12 +38,12 @@ class TranslateElementType extends BaseElementType
     public function defineCriteriaAttributes()
     {
         return array(
-            'original'        => AttributeType::String,
-            'translation'     => AttributeType::String,
-            'source'          => AttributeType::String,
-            'file'            => AttributeType::String,
-            'status'          => array(AttributeType::String, 'default' => TranslateModel::DONE),
-            'locale'		  => array(AttributeType::String, 'default' => 'en_us')
+            'original'    => AttributeType::String,
+            'translation' => AttributeType::String,
+            'source'      => AttributeType::String,
+            'file'        => AttributeType::String,
+            'status'      => array(AttributeType::String, 'default' => TranslateModel::DONE),
+            'locale'      => array(AttributeType::String, 'default' => 'en_us')
         );
     }
     
@@ -61,24 +61,24 @@ class TranslateElementType extends BaseElementType
     {
         return array(
             '*' => array(
-                'label'    => Craft::t('All translations'),
-                'criteria' => array(
-                	'source' => array(
-            			craft()->path->getPluginsPath(), 
-            			craft()->path->getSiteTemplatesPath()
-            		)
-            	)
+                'label'      => Craft::t('All translations'),
+                'criteria'   => array(
+                    'source' => array(
+                        craft()->path->getPluginsPath(), 
+                        craft()->path->getSiteTemplatesPath()
+                    )
+                )
             ),
             'plugins' => array(
-                'label'    => Craft::t('Plugins'),
-                'criteria' => array(
-                	'source' => craft()->path->getPluginsPath()
+                'label'      => Craft::t('Plugins'),
+                'criteria'   => array(
+                    'source' => craft()->path->getPluginsPath()
                 )
             ),
             'templates' => array(
-                'label'    => Craft::t('Templates'),
-                'criteria' => array(
-                	'source' => craft()->path->getSiteTemplatesPath()
+                'label'      => Craft::t('Templates'),
+                'criteria'   => array(
+                    'source' => craft()->path->getSiteTemplatesPath()
                 )
             )
         );
@@ -91,8 +91,8 @@ class TranslateElementType extends BaseElementType
             'context'             => $context,
             'elementType'         => new ElementTypeVariable($this),
             'disabledElementIds'  => $disabledElementIds,
-            'attributes' 		  => $this->defineTableAttributes($sourceKey),
-            'elements'			  => craft()->translate->get($criteria)
+            'attributes'          => $this->defineTableAttributes($sourceKey),
+            'elements'            => craft()->translate->get($criteria)
         );
         
         // Inject some custom js also
