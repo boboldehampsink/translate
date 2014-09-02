@@ -8,6 +8,7 @@
     <div class="buttons">
         <form method="post" enctype="multipart/form-data">
             <input type="hidden" name="action" value="translate/upload">
+            <input type="hidden" name="locale" value="{{ craft.locale }}">
             <input type="file" name="translations-upload" style="display: none" />
         </form>
         <div class="btn submit translations-upload-button" data-icon="upload" style="position: relative; overflow: hidden;" role="button">{{ "Upload file"|t }}</div>
@@ -24,8 +25,8 @@
         {{ parent() }}
         
         <div class="buttons hidden">
-            <input type="submit" class="btn submit" value="{{ "Save"|t }}"> 
-            <a class="btn submit" href="{{ actionUrl('translate/download') }}">{{ "Download"|t }}</a>
+            <input type="submit" class="btn submit translations-save-button" value="{{ "Save"|t }}"> 
+            <a class="btn submit translations-download-button" href="{{ actionUrl('translate/download', {'locale': craft.locale }) }}">{{ "Download"|t }}</a>
         </div>
     </form>
 {% endblock %}

@@ -57,9 +57,6 @@ class TranslateService extends BaseApplicationComponent
             throw new Exception(Craft::t("Something went wrong while saving your translations"));
         
         }
-        
-        // Clear the cache
-        craft()->cache->delete('translations');
     
     }
     
