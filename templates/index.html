@@ -2,16 +2,14 @@
 {% set title = "Translate"|t %}
 {% set elementType = 'Translate' %}
 
+{% includeCssResource "css/assets.css" %}
+{% includeJsResource "lib/fileupload/jquery.ui.widget.js" %}
+{% includeJsResource "lib/fileupload/jquery.fileupload.js" %}
+
 {% block sidebar %}
     <div class="buttons">
-    	<a class="btn submit menubtn">{{ "Translate"|t }}</a>
-    	<div class="menu">
-    		<ul>
-    			<li><a href="{{ actionUrl('translate/refresh') }}">{{ "Refresh"|t }}</a></li>
-    			<li><a href="{{ actionUrl('translate/download') }}">{{ "Download"|t }}</a></li>
-    			<li><a href="{{ actionUrl('translate/upload') }}">{{ "Upload"|t }}</a></li>
-    		</ul>
-    	</div>
+        <input type="file" multiple="multiple" name="assets-upload" style="display: none" />
+        <div class="btn submit assets-upload-button" data-icon="upload" style="position: relative; overflow: hidden;" role="button">{{ "Upload file"|t }}</div>
     </div>
 
 	{{ parent() }}
@@ -45,6 +43,5 @@
     // Change locale on select
     $localeMenuBtn.on('optionselect', function(ev) {
         $localeFormElm.val($(ev.selectedOption).data('locale'));
-    });
-    
+    });    
 {% endblock %}
