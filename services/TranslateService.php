@@ -103,21 +103,21 @@ class TranslateService extends BaseApplicationComponent
                             
                             // Show translation in textfield
                             $field = craft()->templates->render('_includes/forms/text', array(
-                                'id' => ElementHelper::createSlug($original),
-                                'name' => 'translation[' . $original . ']', 
-                                'value' => $translation,
+                                'id'          => ElementHelper::createSlug($original),
+                                'name'        => 'translation[' . $original . ']', 
+                                'value'       => $translation,
                                 'placeholder' => $translation
                             ));
                                                     
                             // Fill element with translation data
                             $element = TranslateModel::populateModel(array(
                                 'id'          => ElementHelper::createSlug($original),
-                                'original'      => $original,
+                                'original'    => $original,
                                 'translation' => $translation,
                                 'source'      => $path,
-                                'file'          => $file,
+                                'file'        => $file,
                                 'locale'      => $criteria->locale,
-                                'field'          => $field
+                                'field'       => $field
                             ));
                             
                             // If searching, only return matches
@@ -128,7 +128,7 @@ class TranslateService extends BaseApplicationComponent
                             // If wanting one status, ditch the rest
                             if($criteria->status && $criteria->status != $element->getStatus()) {
                                 continue;
-                             }
+                            }
                                                     
                             // Collect in array
                             $occurences[$original] = $element;

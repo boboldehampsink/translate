@@ -9,16 +9,19 @@ class TranslateElementType extends BaseElementType
         return Craft::t('Translations');
     }
     
+    // Return true so we have a locale select menu
     public function isLocalized()
     {
         return true;
     }
     
+    // Return true so we have a status select menu
     public function hasStatuses()
     {
         return true;
     }
 
+    // Define statuses
     public function getStatuses()
     {
         return array(
@@ -27,6 +30,7 @@ class TranslateElementType extends BaseElementType
         );
     }
 
+    // Define table column names
     public function defineTableAttributes($source = null)
     {
         return array(
@@ -35,6 +39,7 @@ class TranslateElementType extends BaseElementType
         );
     }
     
+    // Define criteria
     public function defineCriteriaAttributes()
     {
         return array(
@@ -47,16 +52,19 @@ class TranslateElementType extends BaseElementType
         );
     }
     
+    // Cancel the elements query
     public function modifyElementsQuery(DbCommand $query, ElementCriteriaModel $criteria)
     {
         return false;
     }
     
+    // Create element from row
     public function populateElementModel($row)
     {
         return TranslateModel::populateModel($row);
     }
     
+    // Define the sources
     public function getSources($context = null)
     {
         return array(
@@ -84,6 +92,7 @@ class TranslateElementType extends BaseElementType
         );
     }
     
+    // Return the html
     public function getIndexHtml($criteria, $disabledElementIds, $viewState, $sourceKey, $context)
     {
         $variables = array(
