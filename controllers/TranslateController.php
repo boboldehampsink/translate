@@ -24,9 +24,9 @@ class TranslateController extends BaseController
         $occurences = craft()->translate->get($criteria);
         
         // Re-order data
-        $data = "\"".Craft::t("Original")."\",\"".Craft::t("Translation")."\"\r\n";        
+        $data = StringHelper::convertToUTF8("\"".Craft::t("Original")."\",\"".Craft::t("Translation")."\"\r\n");        
         foreach($occurences as $element) {
-            $data .= "\"".$element->original."\",\"".$element->translation."\"\r\n";
+            $data .= StringHelper::convertToUTF8("\"".$element->original."\",\"".$element->translation."\"\r\n");
         }
         
         // Download the file
