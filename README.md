@@ -17,6 +17,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.1###
+- Enforce UTF-8 encoding on CSV download
+
 ###0.2###
 - Added ability to easily select a locale
 - Added ability to search for words/translations
