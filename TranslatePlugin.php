@@ -24,7 +24,7 @@ class TranslatePlugin extends BasePlugin
         return 'http://www.itmundi.nl';
     }
 
-    public function hasCpSection()
+    function hasCpSection()
     {
         return true;
     }

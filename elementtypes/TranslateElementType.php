@@ -67,7 +67,10 @@ class TranslateElementType extends BaseElementType
     // Define the sources
     public function getSources($context = null)
     {
-        return array(
+    
+        // Get default sources
+        $sources = array(
+            array('heading' => Craft::t('Default')),
             '*' => array(
                 'label'      => Craft::t('All translations'),
                 'criteria'   => array(
@@ -90,6 +93,19 @@ class TranslateElementType extends BaseElementType
                 )
             )
         );
+       
+        // Get sources by hook
+        $plugins = craft()->plugins->call('registerTranslateSources');
+        if(count($plugins)) {
+            $sources[] = array('heading' => Craft::t('Custom'));
+            foreach($plugins as $plugin) {
+                $sources = array_merge($sources, $plugin);
+            }
+        }
+        
+        // Return sources
+        return $sources;
+        
     }
     
     // Return the html
