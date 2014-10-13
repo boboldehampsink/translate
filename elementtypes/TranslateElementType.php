@@ -99,7 +99,15 @@ class TranslateElementType extends BaseElementType
         if(count($plugins)) {
             $sources[] = array('heading' => Craft::t('Custom'));
             foreach($plugins as $plugin) {
+            
+                // Add as own source
                 $sources = array_merge($sources, $plugin);
+                
+                // Add to "All translations"
+                foreach($plugin as $key => $values) {
+                     $sources['*']['criteria']['source'][] = $values['criteria']['source'];
+                }
+                
             }
         }
         
