@@ -17,6 +17,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.3###
+- Added a "registerTranslateSources" hook to add translate sources
+
 ###0.2.2###
 - Allow more filters after |translate
 
