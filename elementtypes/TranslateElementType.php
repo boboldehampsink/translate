@@ -70,7 +70,6 @@ class TranslateElementType extends BaseElementType
     
         // Get default sources
         $sources = array(
-            array('heading' => Craft::t('Default')),
             '*' => array(
                 'label'      => Craft::t('All translations'),
                 'criteria'   => array(
@@ -80,6 +79,7 @@ class TranslateElementType extends BaseElementType
                     )
                 )
             ),
+            array('heading' => Craft::t('Default')),
             'plugins' => array(
                 'label'      => Craft::t('Plugins'),
                 'criteria'   => array(
