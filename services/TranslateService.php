@@ -35,6 +35,14 @@ class TranslateService extends BaseApplicationComponent
     public function set($locale, $translations)
     {
     
+        // Determine locale's translation destination file
+        $file = __DIR__ . '/../translations/' . $locale . '.php';
+        
+        // Get current translation
+        if($current = @include($file)) {
+            $translations = array_merge($current, $translations);
+        }
+    
         // Prepare php file
         $php = "<?php\r\n\r\nreturn ";
     
@@ -46,9 +54,6 @@ class TranslateService extends BaseApplicationComponent
         
         // Convert double space to tab (as in Craft's own translation files)
         $php = str_replace("  '", "\t'", $php);
-        
-        // Determine locale's translation destination file
-        $file = __DIR__ . '/../translations/' . $locale . '.php';
         
         // Save code to file
         if(!IOHelper::writeToFile($file, $php)) {
