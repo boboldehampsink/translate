@@ -6,7 +6,8 @@ Plugin that allows you to translate your website.
 Features:
 - Reads Craft::t(), Craft.t() and ""|t()
 - Saves translations in own plugin translations folder
-- Frienldy UI (Select locale, search, select location, filter files)
+- Friendly UI (Select locale, search, select location, filter files)
+- Register your own translation sources with hook "registerTranslateSources"
 
 Todo:
 - Better UI (Show filepath, more locations)
@@ -17,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.4###
+- Merge translations so we don't lose translations, fixing issue #1
+
 ###0.2.3###
 - Added a "registerTranslateSources" hook to add translate sources
 
