@@ -39,6 +39,12 @@ class TranslateElementType extends BaseElementType
         );
     }
     
+    // Don't encode the attribute html
+    public function getTableAttributeHtml(BaseElementModel $element, $attribute)
+    {
+        return $element->$attribute;
+    }
+    
     // Define criteria
     public function defineCriteriaAttributes()
     {
