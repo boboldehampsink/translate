@@ -11,7 +11,7 @@ class TranslatePlugin extends BasePlugin
 
     function getVersion()
     {
-        return '0.2.4';
+        return '0.2.5';
     }
 
     function getDeveloper()

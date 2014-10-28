@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.5###
+- Don't encode table attribute html, closing issue #2
+
 ###0.2.4###
 - Merge translations so we don't lose translations, fixing issue #1
 
