@@ -123,7 +123,7 @@ class TranslateElementType extends BaseElementType
     }
     
     // Return the html
-    public function getIndexHtml($criteria, $disabledElementIds, $viewState, $sourceKey, $context)
+    public function getIndexHtml($criteria, $disabledElementIds, $viewState, $sourceKey, $context, $includeContainer, $showCheckboxes)
     {
         $variables = array(
             'viewMode'            => $viewState['mode'],
@@ -131,14 +131,15 @@ class TranslateElementType extends BaseElementType
             'elementType'         => new ElementTypeVariable($this),
             'disabledElementIds'  => $disabledElementIds,
             'attributes'          => $this->defineTableAttributes($sourceKey),
-            'elements'            => craft()->translate->get($criteria)
+            'elements'            => craft()->translate->get($criteria),
+            'showCheckboxes'      => $showCheckboxes,
         );
         
         // Inject some custom js also
         craft()->templates->includeJs("$('table.fullwidth thead th').css('width', '50%');");
         craft()->templates->includeJs("$('.buttons.hidden').removeClass('hidden');");
        
-        $template = '_elements/'.$viewState['mode'].'view/'.(!$criteria->offset ? 'container' : 'elements');
+        $template = '_elements/'.$viewState['mode'].'view/'.($includeContainer ? 'container' : 'elements');
         return craft()->templates->render($template, $variables);
     }
 
