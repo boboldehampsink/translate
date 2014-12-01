@@ -32,6 +32,17 @@ class TranslateService extends BaseApplicationComponent
         
     );
     
+    public function init()
+    {
+    
+        // Init parent
+        parent::init();
+    
+        // Also use html expressions for twig templates
+        $this->_expressions['twig'] = $this->_expressions['html'];
+    
+    }
+    
     public function set($locale, $translations)
     {
     
