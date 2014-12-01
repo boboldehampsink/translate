@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.6###
+- Added support for opening .twig files
+
 ###0.2.5###
 - Don't encode table attribute html, closing issue #2
 
