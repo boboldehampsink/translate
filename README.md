@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.7###
+- Fixed a bug where opening twig files would not match any expression
+
 ###0.2.6###
 - Added support for opening .twig files
 
