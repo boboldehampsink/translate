@@ -79,8 +79,8 @@ class TranslateService extends BaseApplicationComponent
         // Loop through paths
         foreach($criteria->source as $path) {
         
-            // Set filter - no vendor folders, only php, html or js
-            $filter = '^((?!vendor).)*(\.(php|html|js)?)$';
+            // Set filter - no vendor folders, only php, html, twig or js
+            $filter = '^((?!vendor).)*(\.(php|html|twig|js)?)$';
     
             // Get files
             $files = IOHelper::getFolderContents($path, true, $filter);
