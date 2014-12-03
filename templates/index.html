@@ -7,6 +7,7 @@
 {% block sidebar %}
     <div class="buttons">
         <form method="post" enctype="multipart/form-data">
+            {{ getCsrfInput() }}
             <input type="hidden" name="action" value="translate/upload">
             <input type="hidden" name="locale" value="{{ craft.locale }}">
             <input type="file" name="translations-upload" style="display: none" />
@@ -19,6 +20,7 @@
 
 {% block content %}
     <form method="post" accept-charset="utf-8">
+        {{ getCsrfInput() }}
         <input type="hidden" name="action" value="translate/save">
         <input type="hidden" name="locale" value="{{ craft.locale }}">
         
