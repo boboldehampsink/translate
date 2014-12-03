@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.2.8###
+Warning! This version is updated for Craft 2.3 and does NOT work on Craft 2.2
+
 ###0.2.7###
 - Fixed a bug where opening twig files would not match any expression
 
