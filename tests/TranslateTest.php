@@ -7,9 +7,6 @@ class TranslateTest extends BaseTest
     public function setUp()
     {
     
-        // PHPUnit complains about not settings this
-        date_default_timezone_set('UTC');
-    
         // Load plugins
         $pluginsService = craft()->getComponent('plugins');
         $pluginsService->loadPlugins();
