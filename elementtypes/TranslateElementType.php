@@ -73,6 +73,35 @@ class TranslateElementType extends BaseElementType
     // Define the sources
     public function getSources($context = null)
     {
+
+        // Get plugin sources
+        $pluginSources = array();
+        $plugins = craft()->plugins->getPlugins();
+        foreach($plugins as $path => $plugin) {
+            $pluginSources['plugins:'.$path] = array(
+                'label' => $plugin->classHandle,
+                'criteria' => array(
+                    'source' => craft()->path->getPluginsPath().$path
+                )
+            );
+        }
+
+        // Get template sources
+        $templateSources = array();
+        $templates = IOHelper::getFolderContents(craft()->path->getSiteTemplatesPath(), false);
+        foreach($templates as $template) {
+
+            // Get path/name of html/twig/js/json files and folders
+            preg_match('/(.*)\/(.*?)(\.(html|twig|js)|\/)$/', $template, $matches);
+            $path = $matches[2];
+
+            $templateSources['templates:'.$path] = array(
+                'label' => $path,
+                'criteria' => array(
+                    'source' => $template
+                )
+            );
+        }
     
         // Get default sources
         $sources = array(
@@ -90,13 +119,15 @@ class TranslateElementType extends BaseElementType
                 'label'      => Craft::t('Plugins'),
                 'criteria'   => array(
                     'source' => craft()->path->getPluginsPath()
-                )
+                ),
+                'nested' => $pluginSources
             ),
             'templates' => array(
                 'label'      => Craft::t('Templates'),
                 'criteria'   => array(
                     'source' => craft()->path->getSiteTemplatesPath()
-                )
+                ),
+                'nested' => $templateSources
             )
         );
        
