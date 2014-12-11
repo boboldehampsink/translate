@@ -91,8 +91,8 @@ class TranslateElementType extends BaseElementType
         $templates = IOHelper::getFolderContents(craft()->path->getSiteTemplatesPath(), false);
         foreach($templates as $template) {
 
-            // Get path/name of html/twig/js/json files and folders
-            preg_match('/(.*)\/(.*?)(\.(html|twig|js)|\/)$/', $template, $matches);
+            // Get path/name of template files and folders
+            preg_match('/(.*)\/(.*?)(\.(html|twig|js|json|atom|rss)|\/)$/', $template, $matches);
             $path = $matches[2];
 
             $templateSources['templates:'.$path] = array(

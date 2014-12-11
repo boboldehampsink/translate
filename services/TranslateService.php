@@ -38,8 +38,11 @@ class TranslateService extends BaseApplicationComponent
         // Init parent
         parent::init();
     
-        // Also use html expressions for twig templates
+        // Also use html expressions for twig/json/atom/rss templates
         $this->_expressions['twig'] = $this->_expressions['html'];
+        $this->_expressions['json'] = $this->_expressions['html'];
+        $this->_expressions['atom'] = $this->_expressions['html'];
+        $this->_expressions['rss']  = $this->_expressions['html'];
     
     }
     
@@ -97,7 +100,7 @@ class TranslateService extends BaseApplicationComponent
             if(!$isFile) {
         
                 // Set filter - no vendor folders, only template files
-                $filter = '^((?!vendor).)*(\.(php|html|twig|js)?)$';
+                $filter = '^((?!vendor).)*(\.(php|html|twig|js|json|atom|rss)?)$';
         
                 // Get files
                 $files = IOHelper::getFolderContents($path, true, $filter);
