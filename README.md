@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.3.1###
+- Verify matched translatable files as valid source
+
 ###0.3.0###
 - Added support for nested plugin and template sources
 - Added JSON, Atom and RSS support
