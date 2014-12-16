@@ -92,15 +92,21 @@ class TranslateElementType extends BaseElementType
         foreach($templates as $template) {
 
             // Get path/name of template files and folders
-            preg_match('/(.*)\/(.*?)(\.(html|twig|js|json|atom|rss)|\/)$/', $template, $matches);
-            $path = $matches[2];
+            if(preg_match('/(.*)\/(.*?)(\.(html|twig|js|json|atom|rss)|\/)$/', $template, $matches)) {
 
-            $templateSources['templates:'.$path] = array(
-                'label' => $path,
-                'criteria' => array(
-                    'source' => $template
-                )
-            );
+                // If matches, get template name
+                $path = $matches[2];
+
+                // Add template source
+                $templateSources['templates:'.$path] = array(
+                    'label' => $path,
+                    'criteria' => array(
+                        'source' => $template
+                    )
+                );
+
+            }
+
         }
     
         // Get default sources
