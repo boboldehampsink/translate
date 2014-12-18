@@ -17,9 +17,9 @@ class TranslateService extends BaseApplicationComponent
         // Expressions for ""|t()
         'html' => array(
             // Single quotes
-            '/\{\{(| )\'(.*?)\'.*?\|.*?(t|translate)(\(.*?\)|).*?\}\}/',
+            '/\{(\{\s*|\%.*?)\'(.*?)\'.*?\|.*?(t|translate)(\(.*?\)|).*?(\}|\%)\}/',
             // Double quotes
-            '/\{\{(| )"(.*?)".*?\|.*?(t|translate)(\(.*?\)|).*?\}\}/'
+            '/\{(\{\s*|\%.*?)"(.*?)".*?\|.*?(t|translate)(\(.*?\)|).*?(\}|\%)\}/'
         ),
         
         // Expressions for Craft.t()
