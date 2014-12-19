@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.3.2###
+- Added the ability to read the translate tag when setting variables in twig
+
 ###0.3.1###
 - Verify matched translatable files as valid source
 
