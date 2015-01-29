@@ -9,9 +9,11 @@ $(function() {
     // Get translations download button
     $downloadBtn = $('.translations-download-button');
     
-    // Init form with selected locale
-    $localeFormElm.val(Craft.getLocalStorage('BaseElementIndex.locale'));
-    $downloadBtn.attr('href', $downloadBtn.attr('href').replace(/locale=.*$/, 'locale=' + Craft.getLocalStorage('BaseElementIndex.locale')));
+    // Init form with selected locale, if any
+    if(Craft.getLocalStorage('BaseElementIndex.locale')) {
+        $localeFormElm.val(Craft.getLocalStorage('BaseElementIndex.locale'));
+        $downloadBtn.attr('href', $downloadBtn.attr('href').replace(/locale=.*$/, 'locale=' + Craft.getLocalStorage('BaseElementIndex.locale')));
+    }
     
     // Change locale on select
     $localeMenuBtn.on('optionselect', function(ev) {
