@@ -6,7 +6,7 @@ class TranslateService extends BaseApplicationComponent
 
     protected $_expressions = array(
     
-        // Expressions for Craft::t()
+        // Expressions for Craft::t() variants
         'php' => array(
             // Single quotes
             '/Craft::(t|translate)\(.*?\'(.*?)\'.*?\)/',
@@ -14,7 +14,7 @@ class TranslateService extends BaseApplicationComponent
             '/Craft::(t|translate)\(.*?"(.*?)".*?\)/'    
         ),
         
-        // Expressions for ""|t()
+        // Expressions for ""|t() variants
         'html' => array(
             // Single quotes
             '/\{(\{\s*|\%.*?)\'(.*?)\'.*?\|.*?(t|translate)(\(.*?\)|).*?(\}|\%)\}/',
@@ -22,7 +22,7 @@ class TranslateService extends BaseApplicationComponent
             '/\{(\{\s*|\%.*?)"(.*?)".*?\|.*?(t|translate)(\(.*?\)|).*?(\}|\%)\}/'
         ),
         
-        // Expressions for Craft.t()
+        // Expressions for Craft.t() variants
         'js' => array(
             // Single quotes
             '/Craft\.(t|translate)\(.*?\'(.*?)\'.*?\)/',
