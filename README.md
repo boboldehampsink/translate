@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.3.3###
+- Only init with local stored locale when there is any, else init with default instead of empty - this prevented saving in some occasions
+
 ###0.3.2###
 - Added the ability to read the translate tag when setting variables in twig
 
