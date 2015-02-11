@@ -4,29 +4,28 @@ namespace Craft;
 
 class TranslatePlugin extends BasePlugin
 {
-    function getName()
+    public function getName()
     {
         return Craft::t('Translate');
     }
 
-    function getVersion()
+    public function getVersion()
     {
         return '0.3.3';
     }
 
-    function getDeveloper()
+    public function getDeveloper()
     {
         return 'Bob Olde Hampsink';
     }
 
-    function getDeveloperUrl()
+    public function getDeveloperUrl()
     {
         return 'http://www.itmundi.nl';
     }
 
-    function hasCpSection()
+    public function hasCpSection()
     {
         return true;
     }
-    
 }
