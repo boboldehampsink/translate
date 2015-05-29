@@ -1,9 +1,9 @@
 <?php
-
 namespace Craft;
 
 class TranslateService extends BaseApplicationComponent
 {
+
     protected $_expressions = array(
 
         // Expressions for Craft::t() variants
@@ -63,7 +63,7 @@ class TranslateService extends BaseApplicationComponent
         $php .= var_export($translations, true);
 
         // End php file
-        $php .= ';';
+        $php .= ";";
 
         // Convert double space to tab (as in Craft's own translation files)
         $php = str_replace("  '", "\t'", $php);
@@ -72,7 +72,7 @@ class TranslateService extends BaseApplicationComponent
         if (!IOHelper::writeToFile($file, $php)) {
 
             // If not, complain
-            throw new Exception(Craft::t('Something went wrong while saving your translations'));
+            throw new Exception(Craft::t("Something went wrong while saving your translations"));
         }
     }
 
@@ -86,18 +86,6 @@ class TranslateService extends BaseApplicationComponent
 
         // Gather all translatable strings
         $occurences = array();
-
-        // Get custom occurences
-        $custom = craft()->plugins->call('registerCustomOccurences', array($criteria));
-
-        // Loop through sources, see if we can get any data
-        foreach ($custom as $plugin) {
-            if (is_array($plugin)) {
-                foreach ($plugin as $occurence) {
-                    $occurences[] = $occurence;
-                }
-            }
-        }
 
         // Loop through paths
         foreach ($criteria->source as $path) {
