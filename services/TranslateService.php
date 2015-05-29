@@ -33,9 +33,9 @@ class TranslateService extends BaseApplicationComponent
         // Expressions for ""|t() variants
         'html' => array(
             // Single quotes
-            '/\{(\{\s*|\%.*?)\'(.*?)\'.*?\|.*?(t|translate)(\(.*?\)|).*?(\}|\%)\}/',
+            '/(\{\{\s*|\{\%.*?|:\s*)\'(.*?)\'.*?\|.*?(t|translate)(\(.*?\)|).*?(\}\}|\%\}|,)/',
             // Double quotes
-            '/\{(\{\s*|\%.*?)"(.*?)".*?\|.*?(t|translate)(\(.*?\)|).*?(\}|\%)\}/',
+            '/(\{\{\s*|\{\%.*?|:\s*)"(.*?)".*?\|.*?(t|translate)(\(.*?\)|).*?(\}\}|\%\}|,)/',
         ),
 
         // Expressions for Craft.t() variants
