@@ -1,9 +1,25 @@
 <?php
+
 namespace Craft;
 
+/**
+ * Translate Service.
+ *
+ * Contains translate logics.
+ *
+ * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
+ * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @license   MIT
+ *
+ * @link      http://github.com/boboldehampsink
+ */
 class TranslateService extends BaseApplicationComponent
 {
-
+    /**
+     * Translate tag finding regular expressions.
+     *
+     * @var array
+     */
     protected $_expressions = array(
 
         // Expressions for Craft::t() variants
@@ -32,10 +48,11 @@ class TranslateService extends BaseApplicationComponent
 
     );
 
+    /**
+     * Initialize service.
+     */
     public function init()
     {
-
-        // Init parent
         parent::init();
 
         // Also use html expressions for twig/json/atom/rss templates
@@ -45,9 +62,16 @@ class TranslateService extends BaseApplicationComponent
         $this->_expressions['rss']  = $this->_expressions['html'];
     }
 
-    public function set($locale, $translations)
+    /**
+     * Set translations.
+     *
+     * @param string $locale
+     * @param array  $translations
+     *
+     * @throws Exception if unable to write to file
+     */
+    public function set($locale, array $translations)
     {
-
         // Determine locale's translation destination file
         $file = __DIR__.'/../translations/'.$locale.'.php';
 
@@ -63,7 +87,7 @@ class TranslateService extends BaseApplicationComponent
         $php .= var_export($translations, true);
 
         // End php file
-        $php .= ";";
+        $php .= ';';
 
         // Convert double space to tab (as in Craft's own translation files)
         $php = str_replace("  '", "\t'", $php);
@@ -72,13 +96,19 @@ class TranslateService extends BaseApplicationComponent
         if (!IOHelper::writeToFile($file, $php)) {
 
             // If not, complain
-            throw new Exception(Craft::t("Something went wrong while saving your translations"));
+            throw new Exception(Craft::t('Something went wrong while saving your translations'));
         }
     }
 
-    public function get($criteria)
+    /**
+     * Get translations by criteria.
+     *
+     * @param ElementCriteriaModel $criteria
+     *
+     * @return array
+     */
+    public function get(ElementCriteriaModel $criteria)
     {
-
         // Ensure source is an array
         if (!is_array($criteria->source)) {
             $criteria->source = array($criteria->source);
@@ -124,9 +154,17 @@ class TranslateService extends BaseApplicationComponent
         return $occurences;
     }
 
-    protected function _parseFile($path, $file, $criteria)
+    /**
+     * Open file and parse translate tags.
+     *
+     * @param string               $path
+     * @param string               $file
+     * @param ElementCriteriaModel $criteria
+     *
+     * @return array
+     */
+    protected function _parseFile($path, $file, ElementCriteriaModel $criteria)
     {
-
         // Collect matches in file
         $occurences = array();
 

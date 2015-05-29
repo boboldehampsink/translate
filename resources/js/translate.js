@@ -1,4 +1,14 @@
-$(function() {
+/**
+ * Translate javascript.
+ *
+ * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
+ * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @license   MIT
+ *
+ * @link      http://github.com/boboldehampsink
+ */
+
+(function($) {
 
     // Get locale menu btn
     var $localeMenuBtn = $('.localemenubtn:first').menubtn().data('menubtn').menu;
@@ -28,4 +38,4 @@ $(function() {
         });
     });
 
-});
+}(jQuery));

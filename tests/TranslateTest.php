@@ -1,12 +1,25 @@
 <?php
+
 namespace Craft;
 
+/**
+ * Translate Test.
+ *
+ * Contains translate tests.
+ *
+ * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
+ * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @license   MIT
+ *
+ * @link      http://github.com/boboldehampsink
+ */
 class TranslateTest extends BaseTest
 {
-
+    /**
+     * Set up test.
+     */
     public function setUp()
     {
-
         // Load plugins
         $pluginsService = craft()->getComponent('plugins');
         $pluginsService->loadPlugins();
@@ -15,9 +28,11 @@ class TranslateTest extends BaseTest
         craft()->path->setTemplatesPath(craft()->path->getCpTemplatesPath());
     }
 
+    /**
+     * Test getting of translations.
+     */
     public function testGet()
     {
-
         // Set up criteria, get plugin translations
         $criteria = craft()->elements->getCriteria('Translate');
         $criteria->status = null;

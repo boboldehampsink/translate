@@ -1,27 +1,53 @@
 <?php
+
 namespace Craft;
 
+/**
+ * Translate Element Type.
+ *
+ * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
+ * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @license   MIT
+ *
+ * @link      http://github.com/boboldehampsink
+ */
 class TranslateElementType extends BaseElementType
 {
-
+    /**
+     * Return element type name.
+     *
+     * @return string
+     */
     public function getName()
     {
         return Craft::t('Translations');
     }
 
-    // Return true so we have a locale select menu
+    /**
+     * Return true so we have a locale select menu.
+     *
+     * @return bool
+     */
     public function isLocalized()
     {
         return true;
     }
 
-    // Return true so we have a status select menu
+    /**
+     * Return true so we have a status select menu.
+     *
+     * @return bool
+     */
     public function hasStatuses()
     {
         return true;
     }
 
-    // Define statuses
+    /**
+     * Define statuses.
+     *
+     * @return array
+     */
     public function getStatuses()
     {
         return array(
@@ -30,7 +56,13 @@ class TranslateElementType extends BaseElementType
         );
     }
 
-    // Define table column names
+    /**
+     * Define table column names.
+     *
+     * @param string $source
+     *
+     * @return array
+     */
     public function defineTableAttributes($source = null)
     {
         return array(
@@ -39,13 +71,24 @@ class TranslateElementType extends BaseElementType
         );
     }
 
-    // Don't encode the attribute html
+    /**
+     * Don't encode the attribute html.
+     *
+     * @param BaseElementModel $element
+     * @param string           $attribute
+     *
+     * @return string
+     */
     public function getTableAttributeHtml(BaseElementModel $element, $attribute)
     {
         return $element->$attribute;
     }
 
-    // Define criteria
+    /**
+     * Define criteria.
+     *
+     * @return array
+     */
     public function defineCriteriaAttributes()
     {
         return array(
@@ -58,22 +101,40 @@ class TranslateElementType extends BaseElementType
         );
     }
 
-    // Cancel the elements query
+    /**
+     * Cancel the elements query.
+     *
+     * @param DbCommand            $query
+     * @param ElementCriteriaModel $criteria
+     *
+     * @return bool
+     */
     public function modifyElementsQuery(DbCommand $query, ElementCriteriaModel $criteria)
     {
         return false;
     }
 
-    // Create element from row
+    /**
+     * Create element from row.
+     *
+     * @param array $row
+     *
+     * @return TranslateModel
+     */
     public function populateElementModel($row)
     {
         return TranslateModel::populateModel($row);
     }
 
-    // Define the sources
+    /**
+     * Define the sources.
+     *
+     * @param string $context
+     *
+     * @return array
+     */
     public function getSources($context = null)
     {
-
         // Get plugin sources
         $pluginSources = array();
         $plugins = craft()->plugins->getPlugins();
@@ -155,7 +216,19 @@ class TranslateElementType extends BaseElementType
         return $sources;
     }
 
-    // Return the html
+    /**
+     * Return the html.
+     *
+     * @param array  $criteria
+     * @param array  $disabledElementIds
+     * @param array  $viewState
+     * @param string $sourceKey
+     * @param string $context
+     * @param bool   $includeContainer
+     * @param bool   $showCheckboxes
+     *
+     * @return string
+     */
     public function getIndexHtml($criteria, $disabledElementIds, $viewState, $sourceKey, $context, $includeContainer, $showCheckboxes)
     {
         $variables = array(
