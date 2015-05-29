@@ -18,6 +18,10 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.3.4###
+- Added support for finding translatable strings in object notation
+- Added a MIT license
+
 ###0.3.3###
 - Only init with local stored locale when there is any, else init with default instead of empty - this prevented saving in some occasions
 
