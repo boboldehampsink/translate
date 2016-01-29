@@ -236,7 +236,7 @@ class TranslateElementType extends BaseElementType
             'context'             => $context,
             'elementType'         => new ElementTypeVariable($this),
             'disabledElementIds'  => $disabledElementIds,
-            'attributes'          => $this->defineTableAttributes($sourceKey),
+            'attributes'          => $this->getTableAttributesForSource($sourceKey),
             'elements'            => craft()->translate->get($criteria),
             'showCheckboxes'      => $showCheckboxes,
         );
