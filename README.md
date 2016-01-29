@@ -18,7 +18,7 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
-###0.3.5###
+###0.4.0###
 - Added Craft 2.5 compatibility
 
 ###0.3.4###

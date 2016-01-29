@@ -30,7 +30,7 @@ class TranslatePlugin extends BasePlugin
      */
     public function getVersion()
     {
-        return '0.3.5';
+        return '0.4.0';
     }
 
     /**

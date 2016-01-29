@@ -57,18 +57,28 @@ class TranslateElementType extends BaseElementType
     }
 
     /**
-     * Define table column names.
+     * Define available table column names.
+     *
+     * @return array
+     */
+    public function defineAvailableTableAttributes()
+    {
+        return array(
+            'original' => array('label' => Craft::t('Original')),
+            'field'    => array('label' => Craft::t('Translation')),
+        );
+    }
+
+    /**
+     * Returns the default table attributes.
      *
      * @param string $source
      *
      * @return array
      */
-    public function defineTableAttributes($source = null)
+    public function getDefaultTableAttributes($source = null)
     {
-        return array(
-            'original' => Craft::t('Original'),
-            'field'    => Craft::t('Translation'),
-        );
+        return array('original', 'field');
     }
 
     /**
