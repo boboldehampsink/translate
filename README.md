@@ -18,6 +18,9 @@ The plugin's folder should be named "translate"
 
 Changelog
 =================
+###0.3.5###
+- Added Craft 2.5 compatibility
+
 ###0.3.4###
 - Added support for finding translatable strings in object notation
 - Added a MIT license
