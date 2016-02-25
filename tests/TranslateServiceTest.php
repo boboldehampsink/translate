@@ -28,6 +28,8 @@ class TranslateServiceTest extends BaseTest
 
         // Require dependencies
         require_once __DIR__.'/../services/TranslateService.php';
+        require_once __DIR__.'/../elementtypes/TranslateElementType.php';
+        require_once __DIR__.'/../models/TranslateModel.php';
 
         // Create test translation file
         $file = __DIR__.'/../translations/test.php';
@@ -79,5 +81,41 @@ class TranslateServiceTest extends BaseTest
 
         $service = new TranslateService();
         $service->set('test', array());
+    }
+
+    /**
+     * Test get.
+     *
+     * @covers ::get
+     */
+    public function testGet()
+    {
+        $this->setMockTemplatesService();
+
+        // Set up translate criteria
+        $criteria = new ElementCriteriaModel(array(
+            'source' => __DIR__.'/../',
+        ), new TranslateElementType());
+
+        $service = new TranslateService();
+        $service->init();
+        $results = $service->get($criteria);
+
+        $this->assertCount(0, $results);
+    }
+
+    /**
+     * Mock TemplatesService.
+     */
+    private function setMockTemplatesService()
+    {
+        $mock = $this->getMockBuilder('Craft\TemplatesService')
+            ->disableOriginalConstructor()
+            ->setMethods(array('render'))
+            ->getMock();
+
+        $mock->expects($this->any())->method('render')->willReturn('string');
+
+        $this->setComponent(craft(), 'templates', $mock);
     }
 }
