@@ -16,6 +16,12 @@ Todo:
 Important:
 The plugin's folder should be named "translate"
 
+Development
+=================
+Run this from your Craft installation to test your changes to this plugin before submitting a Pull Request
+```bash
+phpunit --bootstrap craft/app/tests/bootstrap.php --configuration craft/plugins/translate/phpunit.xml.dist --coverage-text craft/plugins/translate/tests
+
 Changelog
 =================
 ###0.4.0###
