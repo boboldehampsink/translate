@@ -7,8 +7,8 @@ namespace Craft;
  *
  * Contains translate request actions.
  *
- * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
- * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @author    Bob Olde Hampsink <b.oldehampsink@nerds.company>
+ * @copyright Copyright (c) 2016, Bob Olde Hampsink
  * @license   MIT
  *
  * @link      http://github.com/boboldehampsink

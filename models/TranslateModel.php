@@ -7,8 +7,8 @@ namespace Craft;
  *
  * Represents translate data.
  *
- * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
- * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @author    Bob Olde Hampsink <b.oldehampsink@nerds.company>
+ * @copyright Copyright (c) 2016, Bob Olde Hampsink
  * @license   MIT
  *
  * @link      http://github.com/boboldehampsink
@@ -18,8 +18,8 @@ class TranslateModel extends BaseElementModel
     /**
      * Status constants.
      */
-    const DONE     = 'live';
-    const PENDING  = 'pending';
+    const DONE = 'live';
+    const PENDING = 'pending';
 
     /**
      * Element type.
@@ -60,13 +60,13 @@ class TranslateModel extends BaseElementModel
     protected function defineAttributes()
     {
         return array_merge(parent::defineAttributes(), array(
-            'id'          => AttributeType::String,
-            'original'    => AttributeType::String,
+            'id' => AttributeType::String,
+            'original' => AttributeType::String,
             'translation' => AttributeType::String,
-            'source'      => AttributeType::Mixed,
-            'file'        => AttributeType::String,
-            'locale'      => array(AttributeType::String, 'default' => 'en_us'),
-            'field'       => AttributeType::Mixed,
+            'source' => AttributeType::Mixed,
+            'file' => AttributeType::String,
+            'locale' => array(AttributeType::String, 'default' => 'en_us'),
+            'field' => AttributeType::Mixed,
         ));
     }
 }

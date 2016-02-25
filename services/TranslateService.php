@@ -7,8 +7,8 @@ namespace Craft;
  *
  * Contains translate logics.
  *
- * @author    Bob Olde Hampsink <b.oldehampsink@itmundi.nl>
- * @copyright Copyright (c) 2015, Bob Olde Hampsink
+ * @author    Bob Olde Hampsink <b.oldehampsink@nerds.company>
+ * @copyright Copyright (c) 2016, Bob Olde Hampsink
  * @license   MIT
  *
  * @link      http://github.com/boboldehampsink
@@ -59,7 +59,7 @@ class TranslateService extends BaseApplicationComponent
         $this->_expressions['twig'] = $this->_expressions['html'];
         $this->_expressions['json'] = $this->_expressions['html'];
         $this->_expressions['atom'] = $this->_expressions['html'];
-        $this->_expressions['rss']  = $this->_expressions['html'];
+        $this->_expressions['rss'] = $this->_expressions['html'];
     }
 
     /**
@@ -188,21 +188,21 @@ class TranslateService extends BaseApplicationComponent
 
                     // Show translation in textfield
                     $field = craft()->templates->render('_includes/forms/text', array(
-                        'id'          => ElementHelper::createSlug($original),
-                        'name'        => 'translation['.$original.']',
-                        'value'       => $translation,
+                        'id' => ElementHelper::createSlug($original),
+                        'name' => 'translation['.$original.']',
+                        'value' => $translation,
                         'placeholder' => $translation,
                     ));
 
                     // Fill element with translation data
                     $element = TranslateModel::populateModel(array(
-                        'id'          => ElementHelper::createSlug($original),
-                        'original'    => $original,
+                        'id' => ElementHelper::createSlug($original),
+                        'original' => $original,
                         'translation' => $translation,
-                        'source'      => $path,
-                        'file'        => $file,
-                        'locale'      => $criteria->locale,
-                        'field'       => $field,
+                        'source' => $path,
+                        'file' => $file,
+                        'locale' => $criteria->locale,
+                        'field' => $field,
                     ));
 
                     // If searching, only return matches
