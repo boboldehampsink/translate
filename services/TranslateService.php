@@ -50,6 +50,8 @@ class TranslateService extends BaseApplicationComponent
 
     /**
      * Initialize service.
+     *
+     * @codeCoverageIgnore
      */
     public function init()
     {
