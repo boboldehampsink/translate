@@ -1,4 +1,4 @@
-Translate plugin for Craft CMS
+Translate plugin for Craft CMS [![Build Status](https://travis-ci.org/boboldehampsink/translate.svg?branch=master)](https://travis-ci.org/boboldehampsink/translate) [![Code Coverage](https://scrutinizer-ci.com/g/boboldehampsink/translate/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/boboldehampsink/translate/?branch=develop) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/boboldehampsink/translate/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/boboldehampsink/translate/?branch=develop)
 =================
 
 Plugin that allows you to translate your website.

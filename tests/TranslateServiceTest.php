@@ -95,6 +95,7 @@ class TranslateServiceTest extends BaseTest
     final public function testGet(array $criteriaAttributes, $expectedCount)
     {
         $this->setMockTemplatesService();
+        $this->setMockLocalizationService();
 
         // Set up translate criteria
         $criteria = new ElementCriteriaModel($criteriaAttributes, new TranslateElementType());
@@ -145,5 +146,20 @@ class TranslateServiceTest extends BaseTest
         $mock->expects($this->any())->method('render')->willReturn('string');
 
         $this->setComponent(craft(), 'templates', $mock);
+    }
+
+    /**
+     * Mock LocalizationService.
+     */
+    private function setMockLocalizationService()
+    {
+        $mock = $this->getMockBuilder('Craft\LocalizationService')
+            ->disableOriginalConstructor()
+            ->setMethods(array('getPrimarySiteLocaleId'))
+            ->getMock();
+
+        $mock->expects($this->any())->method('getPrimarySiteLocaleId')->willReturn('test');
+
+        $this->setComponent(craft(), 'i18n', $mock);
     }
 }

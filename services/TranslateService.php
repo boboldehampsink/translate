@@ -30,7 +30,7 @@ class TranslateService extends BaseApplicationComponent
             '/Craft::(t|translate)\(.*?"(.*?)".*?\)/',
         ),
 
-        // Expressions for ""|t() variants
+        // Expressions for |t() variants
         'html' => array(
             // Single quotes
             '/(\{\{\s*|\{\%.*?|:\s*)\'(.*?)\'.*?\|.*?(t|translate)(\(.*?\)|).*?(\}\}|\%\}|,)/',
