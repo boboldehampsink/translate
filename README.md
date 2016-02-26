@@ -21,9 +21,13 @@ Development
 Run this from your Craft installation to test your changes to this plugin before submitting a Pull Request
 ```bash
 phpunit --bootstrap craft/app/tests/bootstrap.php --configuration craft/plugins/translate/phpunit.xml.dist --coverage-text craft/plugins/translate/tests
+```
 
 Changelog
 =================
+###0.4.1###
+- All service code is now fully covered by unit tests
+
 ###0.4.0###
 - Added Craft 2.5 compatibility
 
