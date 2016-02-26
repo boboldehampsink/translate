@@ -54,7 +54,7 @@ class TranslateServiceTest extends BaseTest
      *
      * @covers ::set
      */
-    public function testSet()
+    final public function testSet()
     {
         $file = __DIR__.'/../translations/test.php';
         IOHelper::changePermissions($file, 0666);
@@ -73,7 +73,7 @@ class TranslateServiceTest extends BaseTest
      *
      * @covers ::set
      */
-    public function testSetWithFailure()
+    final public function testSetWithFailure()
     {
         // Lock it for writing
         $file = __DIR__.'/../translations/test.php';
@@ -86,22 +86,50 @@ class TranslateServiceTest extends BaseTest
     /**
      * Test get.
      *
+     * @param array $criteriaAttributes
+     * @param int   $expectedCount
+     *
      * @covers ::get
+     * @dataProvider provideCriteriaAttributes
      */
-    public function testGet()
+    final public function testGet(array $criteriaAttributes, $expectedCount)
     {
         $this->setMockTemplatesService();
 
         // Set up translate criteria
-        $criteria = new ElementCriteriaModel(array(
-            'source' => __DIR__.'/../',
-        ), new TranslateElementType());
+        $criteria = new ElementCriteriaModel($criteriaAttributes, new TranslateElementType());
 
         $service = new TranslateService();
         $service->init();
         $results = $service->get($criteria);
 
-        $this->assertCount(0, $results);
+        $this->assertCount($expectedCount, $results);
+    }
+
+    /**
+     * Provide criteria attributes.
+     *
+     * @return array
+     */
+    final public function provideCriteriaAttributes()
+    {
+        return array(
+            'With directory source' => array(array(
+                'source' => __DIR__.'/../',
+                'status' => null,
+            ), 17),
+            'With file source' => array(array(
+                'source' => __DIR__.'/../translations/test.php',
+                'status' => null,
+            ), 0),
+            'With search' => array(array(
+                'source' => __DIR__.'/../',
+                'search' => 'test',
+            ), 0),
+            'With status' => array(array(
+                'source' => __DIR__.'/../',
+            ), 0),
+        );
     }
 
     /**
