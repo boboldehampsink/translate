@@ -129,7 +129,7 @@ class TranslateService extends BaseApplicationComponent
             if (!$isFile) {
 
                 // Set filter - no vendor folders, only template files
-                $filter = '^((?!vendor).)*(\.(php|html|twig|js|json|atom|rss)?)$';
+                $filter = '^((?!vendor|node_modules).)*(\.(php|html|twig|js|json|atom|rss)?)$';
 
                 // Get files
                 $files = IOHelper::getFolderContents($path, true, $filter);
