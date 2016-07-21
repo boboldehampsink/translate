@@ -25,6 +25,9 @@ phpunit --bootstrap craft/app/tests/bootstrap.php --configuration craft/plugins/
 
 Changelog
 =================
+###0.4.2###
+- Add node_modules to excluded vendor folders (thanks to @tcsehv)
+
 ###0.4.1###
 - All service code is now fully covered by unit tests
 
