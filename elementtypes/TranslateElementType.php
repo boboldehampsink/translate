@@ -243,7 +243,7 @@ class TranslateElementType extends BaseElementType
     {
         // If the site only has 1 locale enabled, set the translated locale to the primary (and only) locale
         if(empty($criteria['locale'])) {
-            $criteria['locale'] = craft()->i18n->getPrimarySiteLocale()
+            $criteria['locale'] = craft()->i18n->getPrimarySiteLocale();
         }
 
         $variables = array(
