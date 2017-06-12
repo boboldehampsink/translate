@@ -25,6 +25,9 @@ phpunit --bootstrap craft/app/tests/bootstrap.php --configuration craft/plugins/
 
 Changelog
 =================
+###0.4.3###
+- Fixed a bug where translations wouldn't be shown on sites with only 1 locale defined (thanks to @janhenckens)
+
 ###0.4.2###
 - Add node_modules to excluded vendor folders (thanks to @tcsehv)
 
